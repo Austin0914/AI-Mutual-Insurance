@@ -1,0 +1,23 @@
+version: 1
+applications:
+  - appRoot: frontend
+    frontend:
+      buildPath: /
+      phases:
+        preBuild:
+          commands:
+            - npm install -g pnpm@11.9.0
+            - pnpm install --frozen-lockfile
+            - pnpm gen:addresses
+            - pnpm build:abi
+        build:
+          commands:
+            - pnpm --filter @ai-insurance/frontend build
+      artifacts:
+        baseDirectory: frontend/.next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - frontend/.next/cache/**/*

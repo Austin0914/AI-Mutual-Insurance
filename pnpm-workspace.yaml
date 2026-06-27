@@ -3,22 +3,22 @@ packages:
   - 'frontend'
   - 'backend'
 
-# 關閉每次 pnpm run 前的依賴狀態檢查；否則被忽略的可選原生建置會讓檢查以 exit 1 中斷。
-verifyDepsBeforeRun: false
+# pnpm 11 writes this map when build scripts need approval. Amplify/CI is
+# non-interactive, so keep the known native/binary packages explicitly allowed.
+allowBuilds:
+  bufferutil: true
+  esbuild: true
+  keccak: true
+  sharp: true
+  utf-8-validate: true
 
+# Keep compatibility with pnpm versions that read the list form.
 onlyBuiltDependencies:
-  - esbuild
-
-# 以下為可選的原生加速/影像最佳化套件，本專案唯讀前端用不到，
-# 明確標記為「不建置」以免每次 install 報 ERR_PNPM_IGNORED_BUILDS。
-ignoredBuiltDependencies:
   - bufferutil
-  - utf-8-validate
+  - esbuild
   - keccak
   - sharp
+  - utf-8-validate
 
-allowBuilds:
-  bufferutil: set this to true or false
-  keccak: set this to true or false
-  sharp: set this to true or false
-  utf-8-validate: set this to true or false
+# Keep run-script dependency checks from failing on optional native packages in CI.
+verifyDepsBeforeRun: false
