@@ -1,0 +1,22 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.24"
+optimizer = true
+optimizer_runs = 200
+remappings = [
+    "forge-std/=lib/forge-std/src/",
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+    "@chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/",
+]
+# 允許部署腳本將位址寫入 repo 根的 deployments/（供前後端 ABI 管線取用）。
+fs_permissions = [{ access = "read-write", path = "../deployments/" }]
+
+[fmt]
+line_length = 120
+tab_width = 4
+bracket_spacing = true
+
+# See more config options https://book.getfoundry.sh/reference/config/

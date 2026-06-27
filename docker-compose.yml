@@ -1,0 +1,22 @@
+# 本地開發基礎設施。前後端與合約執行於 host，僅 Postgres 由容器提供。
+# 連線字串與 backend/.env.example 一致：postgres://postgres:postgres@127.0.0.1:5432/ai_insurance
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ai-insurance-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ai_insurance
+    ports:
+      - "5432:5432"
+    volumes:
+      - ai-insurance-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ai_insurance"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  ai-insurance-pgdata:

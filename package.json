@@ -1,0 +1,19 @@
+{
+  "name": "ai-insurance",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "gen:abi": "pnpm --filter @ai-insurance/abi gen",
+    "gen:addresses": "pnpm --filter @ai-insurance/abi gen:addresses",
+    "build:abi": "pnpm --filter @ai-insurance/abi build",
+    "test:abi": "pnpm --filter @ai-insurance/abi test",
+    "typecheck": "pnpm --filter @ai-insurance/abi build && pnpm -r typecheck",
+    "deploy:local": "cd contracts && forge script script/DeployDisputeSystem.s.sol --rpc-url http://127.0.0.1:8545 --broadcast --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+    "dev": "bash scripts/dev-up.sh",
+    "dev:down": "docker compose stop",
+    "dev:reset": "docker compose down -v"
+  }
+}

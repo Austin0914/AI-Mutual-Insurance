@@ -1,0 +1,29 @@
+# Node
+node_modules/
+dist/
+
+# 一鍵啟動的本地日誌（anvil/deploy/migrate）
+.dev/
+
+# Local deploy artifacts（本地 anvil 鏈，位址每次重啟即變，不入版控）
+deployments/31337.json
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Editor
+.DS_Store
+
+# Build / framework cache
+.next/
+**/.next/
+**/dist/
+*.tsbuildinfo
+coverage/
+.turbo/
+
+
+# Archives / delivery bundles
+*.zip
