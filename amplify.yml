@@ -14,7 +14,7 @@ applications:
           commands:
             - pnpm --filter @ai-insurance/frontend build
       artifacts:
-        baseDirectory: frontend/out
+        baseDirectory: frontend/.next
         files:
           - '**/*'
       cache:
