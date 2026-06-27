@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   // @ai-insurance/abi 為 workspace 套件，交由 Next 一併編譯。
   transpilePackages: ['@ai-insurance/abi'],
   webpack(config) {
